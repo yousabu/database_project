@@ -1,0 +1,61 @@
+CREATE TABLE "book" (
+  "ISPAN" varchar(200),
+  "year" date,
+  "title" varchar(200),
+  "price" float,
+  "basket_id" int,
+  "puplisher_name" varchar(200),
+  "ware_house_code" <type>,
+  PRIMARY KEY ("ISPAN")
+);
+
+CREATE TABLE "book_Authers" (
+  "ISBAN" varchar(200),
+  "name" varchar(200)
+);
+
+CREATE INDEX "PK_F" ON  "book_Authers" ("ISBAN", "name");
+
+CREATE TABLE "authers" (
+  "name" varchar(200),
+  "address" <type>,
+  "URL" <type>,
+  "ISBAN" <type>,
+  PRIMARY KEY ("name")
+);
+
+CREATE TABLE "publisher" (
+  "name" <type>,
+  "adress" <type>,
+  "phone" <type>,
+  "URL" <type>,
+  PRIMARY KEY ("name"),
+  CONSTRAINT "FK_publisher.name"
+    FOREIGN KEY ("name")
+      REFERENCES "book"("puplisher_name")
+);
+
+CREATE TABLE "ware_house" (
+  "code" <type>,
+  "adress" <type>,
+  "phone" <type>,
+  PRIMARY KEY ("code"),
+  CONSTRAINT "FK_ware_house.code"
+    FOREIGN KEY ("code")
+      REFERENCES "book"("basket_id")
+);
+
+CREATE TABLE "shopping_basket" (
+  "basket_id" <type>,
+  "customer_email" <type>,
+  PRIMARY KEY ("basket_id")
+);
+
+CREATE TABLE "customer" (
+  "email" <type>,
+  "name" <type>,
+  "adress" <type>,
+  "phone" <type>,
+  PRIMARY KEY ("email")
+);
+
